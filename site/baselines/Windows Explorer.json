@@ -1,6 +1,6 @@
 {
-  "id": "Windows Explorer Hardening",
-  "name": "Windows Explorer Hardening",
+  "id": "Windows Explorer",
+  "name": "Windows Explorer",
   "category": "Windows 11",
   "tier": "Core",
   "version": "1.0.0",
