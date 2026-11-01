@@ -1,0 +1,41 @@
+{
+  "id": "windows-11-core",
+  "name": "Windows 11 Core",
+  "category": "Windows 11",
+  "tier": "Core",
+  "version": "1.0.0",
+  "status": "Published",
+  "description": "Voorbeeldbaseline met een basisset aan aanbevolen Windows 11-beveiligingsinstellingen. Vervang of breid deze voorbeeldinhoud uit voordat je de baseline als productieadvies publiceert.",
+  "updated": "2026-11-01",
+  "settings": [
+    {
+      "id": "defender-realtime-monitoring",
+      "name": "Turn on real-time protection",
+      "value": "Enabled",
+      "category": "Microsoft Defender Antivirus",
+      "description": "Enables real-time scanning of files and processes.",
+      "rationale": "Helps detect and block malware as files are accessed or executed.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "Example mapping — validate before production" }
+      ]
+    },
+    {
+      "id": "firewall-domain-profile",
+      "name": "Windows Defender Firewall — Domain Profile",
+      "value": "Enabled",
+      "category": "Windows Firewall",
+      "description": "Enables the Windows Firewall domain profile.",
+      "rationale": "Provides host-based network traffic filtering for domain-connected devices.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-01",
+      "notes": "Initial example structure for the static Baseline365 portal."
+    }
+  ]
+}
