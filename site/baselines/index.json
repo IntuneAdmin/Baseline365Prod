@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "1.0",
+  "baselines": [
+    "windows-11-core.json",
+    "edge-standard.json"
+  ]
+}

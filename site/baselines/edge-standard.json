@@ -1,0 +1,29 @@
+{
+  "id": "edge-standard",
+  "name": "Microsoft Edge Standard",
+  "category": "Microsoft Edge",
+  "tier": "Standard",
+  "version": "1.0.0",
+  "status": "Published",
+  "description": "Voorbeeldbaseline voor Microsoft Edge. De instellingen zijn demonstratiegegevens en moeten inhoudelijk worden gevalideerd voordat je ze publiceert als aanbevolen configuratie.",
+  "updated": "2026-11-01",
+  "settings": [
+    {
+      "id": "edge-smartscreen",
+      "name": "Configure Microsoft Defender SmartScreen",
+      "value": "Enabled",
+      "category": "Security",
+      "description": "Enables Microsoft Defender SmartScreen protection in Microsoft Edge.",
+      "rationale": "Helps protect users from malicious websites and downloads.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-01",
+      "notes": "Initial example structure for the static Baseline365 portal."
+    }
+  ]
+}
