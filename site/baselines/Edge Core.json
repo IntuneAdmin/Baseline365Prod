@@ -1,6 +1,6 @@
 {
   "id": "edge-standard",
-  "name": "Microsoft Edge Standard",
+  "name": "Microsoft Edge Core",
   "category": "Microsoft Edge",
   "tier": "Standard",
   "version": "1.0.0",
