@@ -1,10 +1,9 @@
 {
   "schemaVersion": "1.0",
   "baselines": [
-    "windows-11-core.json",
-    "edge-standard.json",
-    "Fundamentals.json",
-    "Associate.json",
-    "Expert.json"
+    "Edge-Core.json",
+    "Workplace Fundamentals.json",
+    "Workplace Associate.json",
+    "WorkplaceExpert.json"
   ]
 }
