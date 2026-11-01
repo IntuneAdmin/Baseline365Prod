@@ -1,0 +1,110 @@
+{
+  "id": "Windows Terminal",
+  "name": "Windows Terminal",
+  "category": "Windows 11",
+  "tier": "Core",
+  "version": "1.0.0",
+  "status": "Published",
+  "description": "Basisset aan aanbevolen Windows 11-beveiligingsinstellingen voor Windows Terminal.",
+  "updated": "2026-11-01",
+  "settings": [
+    {
+      "id": "Sudo",
+      "name": "Disable Sudo",
+      "value": "Disabled",
+      "category": "Sudo",
+      "description": "Disabling Sudo prevents the use of elevated privileges within Windows Terminal.",
+      "rationale": "Disabling Sudo may be necessary for security reasons, but it reduces the ability to perform administrative tasks within Windows Terminal.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "Example mapping — validate before production" }
+      ]
+    },    {
+      "id": "Prevent access to the command prompt ",
+      "name": "Prevent access to the command prompt",
+      "value": "Enabled",
+      "category": "System",
+      "description": "Preventing access to the command prompt restricts users from executing commands directly within Windows Terminal.",
+      "rationale": "Preventing access to the command prompt may be necessary for security reasons, but it reduces the ability to perform administrative tasks within Windows Terminal.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Disable the command prompt script processing also?",
+      "name": "Disable the command prompt script processing also?",
+      "value": "No",
+      "category": "System",
+      "description": "Disabling the command prompt script processing restricts users from executing scripts directly within Windows Terminal.",
+      "rationale": "Disabling the command prompt script processing may be necessary for security reasons, but it reduces the ability to perform administrative tasks within Windows Terminal.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Powershell script execution policy",
+      "name": "Powershell script execution policy",
+      "value": "Allow local scripts and remote signed scripts",
+      "category": "Windows Components - Windows Power Shell",
+      "description": "Setting the Powershell script execution policy to Restricted prevents the execution of scripts within Windows Terminal.",
+      "rationale": "Restricting Powershell script execution enhances security by preventing potentially harmful scripts from running, but it may limit administrative automation tasks within Windows Terminal.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Turn on Module Logging",
+      "name": "Turn on Module Logging",
+      "value": "Enabled",
+      "category": "Windows Components - Windows Power Shell",
+      "description": "Turning on module logging helps track the activities of PowerShell modules for security and auditing purposes.",
+      "rationale": "Enabling module logging enhances security by providing detailed logs of PowerShell module activities, which can be useful for detecting and investigating suspicious behavior.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Turn on PowerShell Script Block Logging",
+      "name": "Turn on PowerShell Script Block Logging",
+      "value": "Enabled",
+      "category": "Windows Components - Windows Power Shell",
+      "description": "Turning on PowerShell script block logging records the content of all executed script blocks for security and auditing purposes.",
+      "rationale": "Enabling script block logging enhances security by providing detailed logs of PowerShell script activities, which can be useful for detecting and investigating suspicious behavior.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Log script block invocation start / stop events:",
+      "name": "Log script block invocation start / stop events",
+      "value": "False",
+      "category": "Windows Components - Windows Power Shell",
+      "description": "Logging script block invocation start and stop events helps track the execution of PowerShell scripts for security and auditing purposes.",
+      "rationale": "Enabling this logging enhances security by providing detailed logs of when script blocks start and stop, which can be useful for detecting and investigating suspicious behavior.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+     {
+      "id": "Turn on Script Execution",
+      "name": "Turn on Script Execution",
+      "value": "Enabled",
+      "category": "Windows Components - Windows Power Shell",
+      "description": "Turning on script execution allows PowerShell scripts to run, which is necessary for automation and administrative tasks.",
+      "rationale": "Enabling script execution ensures that authorized scripts can run while maintaining control over the execution policy.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Enable Windows Package Manager command line interfaces",
+      "name": "Enable Windows Package Manager command line interfaces",
+      "value": "Disabled",
+      "category": "Windows Components - Desktop App Installer",
+      "description": "Enabling Windows Package Manager command line interfaces allows the use of the Windows Package Manager for software installation and management.",
+      "rationale": "Enabling this setting facilitates software management and automation through the Windows Package Manager.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-01",
+      "notes": "Release of Windows Terminal Hardening baseline version 1.0.0"
+    }
+  ]
+}

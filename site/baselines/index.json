@@ -2,5 +2,6 @@
   "schemaVersion": "1.0",
   "baselines": [
     "Windows Explorer Hardening.json"
+    "Windows Terminal.json"
     ]
 }
