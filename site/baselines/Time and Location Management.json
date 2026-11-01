@@ -1,0 +1,181 @@
+{
+  "id": "Time and Location Management",
+  "name": "Time and Location Management",
+  "category": "Windows 11",
+  "tier": "Core",
+  "version": "1.0.0",
+  "status": "Published",
+  "description": "Basisset aan aanbevolen Windows 11-beveiligingsinstellingen voor Time and Location Management.",
+  "updated": "2026-11-01",
+  "settings": [
+    {
+      "id": "Allow time zone redirection",
+      "name": "Allow time zone redirection",
+      "value": "Disabled",
+      "category": "Device and Resource Redirection",
+      "description": "Disabling time zone redirection prevents the system from automatically adjusting the time zone based on the device's location.",
+      "rationale": "Disabling time zone redirection may be necessary for security reasons, but it reduces the ability to automatically adjust the system time zone based on location.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "Example mapping — validate before production" }
+      ]
+    },
+    {
+      "id": "Configure Windows NTP Client",
+      "name": "Configure Windows NTP Client",
+      "value": "Enabled",
+      "category": "Time Providers",
+      "description": "Configuring the Windows NTP Client ensures that the system time is synchronized with a reliable time source.",
+      "rationale": "Enabling and properly configuring the Windows NTP Client enhances security and accuracy by keeping the system time consistent with a trusted time source.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Windows NTP Client",
+      "name": "CrossSiteSyncFlags",
+      "value": "2",
+      "category": "Time Providers",
+      "description": "Specifies the CrossSiteSyncFlags setting for the Windows NTP Client.",
+      "rationale": "Setting the CrossSiteSyncFlags ensures proper synchronization behavior across sites for the Windows NTP Client.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Windows NTP Client",
+      "name": "EventLogFlags",
+      "value": "3",
+      "category": "Time Providers",
+      "description": "Specifies the EventLogFlags setting for the Windows NTP Client.",
+      "rationale": "Setting the EventLogFlags ensures proper logging behavior for the Windows NTP Client.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Windows NTP Client",
+      "name": "NtpServer",
+      "value": "time.windows.com,0x9",
+      "category": "Time Providers",
+      "description": "Specifies the NtpServer setting for the Windows NTP Client.",
+      "rationale": "Setting the NtpServer ensures the Windows NTP Client synchronizes with the specified time server.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Windows NTP Client",
+      "name": "ResolvePeerBackoffMaxTimes",
+      "value": "7",
+      "category": "Time Providers",
+      "description": "Specifies the ResolvePeerBackoffMaxTimes setting for the Windows NTP Client.",
+      "rationale": "Setting the ResolvePeerBackoffMaxTimes ensures the Windows NTP Client properly handles backoff retries when resolving peers.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Windows NTP Client",
+      "name": "ResolvePeerBackoffMinutes",
+      "value": "15",
+      "category": "Time Providers",
+      "description": "Specifies the ResolvePeerBackoffMMinutes setting for the Windows NTP Client.",
+      "rationale": "Setting the ResolvePeerBackoffMMinutes ensures the Windows NTP Client properly handles backoff retries when resolving peers.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Windows NTP Client",
+      "name": "SpecialPollInterval",
+      "value": "1024",
+      "category": "Time Providers",
+      "description": "Specifies the SpecialPollInterval setting for the Windows NTP Client.",
+      "rationale": "Setting the SpecialPollInterval ensures the Windows NTP Client properly handles special poll intervals.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Windows NTP Client",
+      "name": "Type",
+      "value": "NTP",
+      "category": "Time Providers",
+      "description": "Specifies the Type setting for the Windows NTP Client.",
+      "rationale": "Setting the Type ensures the Windows NTP Client properly handles the specified time synchronization type.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Enable Windows NTP Client",
+      "name": "Enable Windows NTP Client",
+      "value": "Enabled",
+      "category": "Time Providers",
+      "description": "Specifies the Enable Windows NTP Client setting for the Windows NTP Client.",
+      "rationale": "Setting the Enable Windows NTP Client ensures the Windows NTP Client is properly enabled.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Disallow changing of geographic location",
+      "name": "Disallow changing of geographic location",
+      "value": "Enabled",
+      "category": "Locale Services",
+      "description": "Specifies the Disallow changing of geographic location setting for the system.",
+      "rationale": "Setting the Disallow changing of geographic location ensures the system's geographic location cannot be changed.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Disallow user override of locale settings",
+      "name": "Disallow user override of locale settings",
+      "value": "Enabled",
+      "category": "Locale Services",
+      "description": "Specifies the Disallow user override of locale settings setting for the system.",
+      "rationale": "Setting the Disallow user override of locale settings ensures the system's locale settings cannot be changed by the user.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Restrict user locales",
+      "name": "Restrict user locales",
+      "value": "Enabled",
+      "category": "Locale Services",
+      "description": "Specifies the Restrict user locales setting for the system.",
+      "rationale": "Setting the Restrict user locales ensures the system's locale settings are restricted for the user.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Time Zone",
+      "name": "Configure Time Zone",
+      "value": "W. Europe Standard Time",
+      "category": "Locale Services",
+      "description": "Specifies the Configure Time Zone setting for the system.",
+      "rationale": "Setting the Configure Time Zone ensures the system's time zone is properly configured.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Change System Time",
+      "name": "Change System Time",
+      "value": "*S-1-5-32-544, *S-1-5-19",
+      "category": "User Rights",
+      "description": "Specifies the Change System Time setting for the system.",
+      "rationale": "Setting the Change System Time ensures the system's time can only be changed by authorized users.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Change Time Zone",
+      "name": "Change Time Zone",
+      "value": "*S-1-5-32-544, *S-1-5-19",
+      "category": "User Rights",
+      "description": "Specifies the Change Time Zone setting for the system.",
+      "rationale": "Setting the Change Time Zone ensures the system's time zone can only be changed by authorized users.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    }
+    ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-01",
+      "notes": "Release of Time and Location Management baseline version 1.0.0"
+    }
+  ]
+}
