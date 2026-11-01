@@ -1,0 +1,101 @@
+{
+  "id": "Windows Explorer Hardening",
+  "name": "Windows Explorer Hardening",
+  "category": "Windows 11",
+  "tier": "Core",
+  "version": "1.0.0",
+  "status": "Published",
+  "description": "Basisset aan aanbevolen Windows 11-beveiligingsinstellingen voor Windows Explorer.",
+  "updated": "2026-11-01",
+  "settings": [
+    {
+      "id": "Turn off Data Execution Prevention for Explorer",
+      "name": "Turn off Data Execution Prevention for Explorer",
+      "value": "Disabled",
+      "category": "Windows Components - File Explorer",
+      "description": "Disabling data execution prevention can allow certain legacy plug-in applications to function without terminating Explorer.",
+      "rationale": "Disabling data execution prevention for Explorer may be necessary for compatibility with certain legacy plug-ins, but it reduces protection against malicious code execution.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "Example mapping — validate before production" }
+      ]
+    },
+    {
+      "id": "Turn off heap termination on corruption",
+      "name": "Turn off heap termination on corruption",
+      "value": "Disabled",
+      "category": "Windows Components - File Explorer",
+      "description": "Disabling heap termination on corruption allows Explorer to continue running even if heap corruption is detected.",
+      "rationale": "Turning off heap termination on corruption may be necessary for compatibility with certain legacy plug-ins, but it reduces protection against memory corruption attacks.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Turn off shell protocol protected mode",
+      "name": "Turn off shell protocol protected mode",
+      "value": "Disabled",
+      "category": "Windows Components - File Explorer",
+      "description": "Disabling shell protocol protected mode allows Explorer to handle certain shell protocol operations without the additional security restrictions.",
+      "rationale": "Turning off shell protocol protected mode may be necessary for compatibility with certain legacy plug-ins, but it reduces protection against potentially unsafe shell protocol operations.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Do not preserve zone information in file attachments",
+      "name": "Do not preserve zone information in file attachments",
+      "value": "Disabled",
+      "category": "Windows Components - Attachment Manager",
+      "description": "Disabling the preservation of zone information in file attachments prevents Windows from marking files with their originating security zone.",
+      "rationale": "Not preserving zone information may be necessary for compatibility with certain legacy applications, but it reduces protection against potentially unsafe files downloaded from the internet.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Hide mechanisms to remove zone information",
+      "name": "Hide mechanisms to remove zone information",
+      "value": "Enabled",
+      "category": "Windows Components - Attachment Manager",
+      "description": "Hiding mechanisms to remove zone information prevents users from bypassing the security zone markings on files.",
+      "rationale": "Hiding these mechanisms may be necessary for compatibility with certain legacy applications, but it reduces the ability of users to manage potentially unsafe files downloaded from the internet.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Notify antivirus programs when opening attachments",
+      "name": "Notify antivirus programs when opening attachments",
+      "value": "Enabled",
+      "category": "Windows Components - Attachment Manager",
+      "description": "Notifying antivirus programs when opening attachments ensures that antivirus software is aware of potentially unsafe files.",
+      "rationale": "This setting helps maintain security by allowing antivirus programs to scan attachments, reducing the risk of malware infections.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Enable Smart Screen In Shell",
+      "name": "Enable Smart Screen In Shell",
+      "value": "Enabled",
+      "category": "SmartScreen",
+      "description": "Enabling Smart Screen in Shell helps protect against malicious websites and downloads by providing warnings and blocking potentially unsafe content.",
+      "rationale": "This setting enhances security by leveraging Smart Screen to detect and prevent access to harmful content.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+     {
+      "id": "Prevent Override For Files In Shell",
+      "name": "Prevent Override For Files In Shell",
+      "value": "Enabled",
+      "category": "SmartScreen",
+      "description": "Preventing override for files in Shell ensures that users cannot bypass security warnings for potentially unsafe files.",
+      "rationale": "This setting enhances security by enforcing the Smart Screen warnings and preventing users from ignoring them.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-01",
+      "notes": "Release of Windows Explorer Hardening baseline version 1.0.0"
+    }
+  ]
+}
