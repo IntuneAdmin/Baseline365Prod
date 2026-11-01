@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0",
   "baselines": [
-    "Edge-Core.json",
+    "Edge Core.json",
     "Workplace Fundamentals.json",
     "Workplace Associate.json",
-    "WorkplaceExpert.json"
+    "Workplace Expert.json"
   ]
 }
