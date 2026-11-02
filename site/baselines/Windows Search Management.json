@@ -1,0 +1,99 @@
+{
+  "id": "Windows Search Management",
+  "name": "Windows Search Management",
+  "category": "Windows 11",
+  "tier": "Core",
+  "version": "1.0.0",
+  "status": "Published",
+  "description": "Beperkt Windows Search tot lokale en M365-content. Webresultaten, Search Highlights, locatiegebruik en Uitgebreid zoeken (Find My Files) zijn uitgeschakeld. Versleutelde bestanden en verwisselbare schijven worden niet geïndexeerd, en externe zoekopdrachten op de index zijn geblokkeerd. Cloud Search blijft toegestaan, zodat OneDrive- en SharePoint-content vindbaar is.",
+  "updated": "2026-11-02",
+  "settings": [
+    {
+      "id": "Allow Cloud Search",
+      "name": "Allow Cloud Search",
+      "value": "Allowed",
+      "category": "Search",
+      "description": "Allows Windows Search to search cloud sources such as OneDrive and SharePoint.",
+      "rationale": "Keeping Cloud Search enabled ensures that content stored in OneDrive and SharePoint remains discoverable through Windows Search, while other, less controlled search sources are restricted.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Allow Find My Files",
+      "name": "Allow Find My Files",
+      "value": "Disabled",
+      "category": "Search",
+      "description": "Controls whether users can configure Search to Find My Files mode, which searches secondary hard drives and locations outside the user profile.",
+      "rationale": "Disabling Find My Files completely removes the ability to search files outside the user's own profile, reducing the risk of inadvertently exposing content the user would not normally have browsed to.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Allow Indexing of Encrypted Stores or Items",
+      "name": "Allow Indexing of Encrypted Stores or Items",
+      "value": "Not Allowed",
+      "category": "Search",
+      "description": "Controls whether encrypted files and stores are decrypted and indexed by Windows Search.",
+      "rationale": "Preventing indexing of encrypted items avoids decrypted content or metadata being written into the search index, keeping sensitive, encrypted data out of a store that is not subject to the same access controls.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Allow Search Highlights",
+      "name": "Allow Search Highlights",
+      "value": "Disabled",
+      "category": "Search",
+      "description": "Controls whether Search Highlights (dynamic, cloud-curated content) are shown in search home and the taskbar/Start menu search box.",
+      "rationale": "Disabling Search Highlights removes cloud-curated promotional and informational content from the search experience, limiting unnecessary data retrieval and keeping the search UI focused on local and work content.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Allow Search to Use Location",
+      "name": "Allow Search to Use Location",
+      "value": "Not Allowed",
+      "category": "Search",
+      "description": "Controls whether Search can access location information to provide location-aware search results.",
+      "rationale": "Blocking Search from using location information reduces the amount of sensitive location data processed by the search platform, limiting privacy exposure without affecting core search functionality.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Disable Removable Drive Indexing",
+      "name": "Disable Removable Drive Indexing",
+      "value": "Enabled",
+      "category": "Search",
+      "description": "Prevents locations on removable drives from being added to libraries and from being indexed by Windows Search.",
+      "rationale": "Removable drives can be disconnected, lost, or shared between devices; excluding them from indexing prevents potentially sensitive content on removable media from being cached in the local search index.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Do Not Use Web Results",
+      "name": "Do Not Use Web Results",
+      "value": "Enabled",
+      "category": "Search",
+      "description": "Controls whether Search performs queries on the web and displays web results alongside local search results.",
+      "rationale": "Disabling web results in Search keeps queries limited to local and organizational content, reducing the amount of search telemetry sent to external services and avoiding mixing of untrusted web content with local search results.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Prevent Remote Queries",
+      "name": "Prevent Remote Queries",
+      "value": "Enabled",
+      "category": "Search",
+      "description": "Controls whether other computers can query this device's search index remotely when browsing network shares hosted on it.",
+      "rationale": "Preventing remote queries of the local index stops other clients from using this device's index when browsing its shared folders, reducing the attack surface exposed through the Windows Search service.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-02",
+      "notes": "Release of Windows Search Management baseline version 1.0.0, converted from an Intune Settings Catalog export."
+    }
+  ]
+}
