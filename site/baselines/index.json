@@ -3,6 +3,7 @@
   "baselines": [
     "Windows Explorer.json",
     "Windows Terminal.json",
-    "Time and Location Management.json"
+    "Time and Location Management.json",
+    "Microsoft Edge for Business.json"
     ]
 }

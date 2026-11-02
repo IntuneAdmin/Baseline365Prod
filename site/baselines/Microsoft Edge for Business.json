@@ -1,0 +1,839 @@
+{
+  "id": "Microsoft Edge for Business",
+  "name": "Microsoft Edge for Business",
+  "category": "Windows 11",
+  "tier": "Core",
+  "version": "1.0.0",
+  "status": "Published",
+  "description": "Basisset aan aanbevolen beveiligingsinstellingen voor Microsoft Edge for Business, gebaseerd op de Microsoft Edge Security Configuration Template (SCT) v151 als referentie.",
+  "updated": "2026-11-02",
+  "settings": [
+    {
+      "id": "Copilot Mode - Allow agentic actions",
+      "name": "Allow autonomous (agentic) actions in Copilot Mode",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Copilot Mode",
+      "description": "Controls whether Copilot Mode is allowed to take autonomous actions on a user's behalf, such as filling in forms or completing multi-step tasks on websites.",
+      "rationale": "Disabling agentic actions prevents an AI feature from autonomously interacting with sites and submitting data without explicit per-step user confirmation, reducing the risk of unintended or manipulated actions.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Download Restrictions",
+      "name": "Download Restrictions",
+      "value": "Block dangerous downloads",
+      "category": "Microsoft Edge - Downloads",
+      "description": "Restricts which files users are allowed to download based on Microsoft Defender SmartScreen's verdict for the file.",
+      "rationale": "Blocking downloads that SmartScreen flags as dangerous reduces the risk of malware reaching the endpoint via the browser.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Enable Unsafe SwiftShader",
+      "name": "Enable unsafe SwiftShader fallback for WebGL",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Graphics",
+      "description": "Controls whether Edge is allowed to fall back to the unsafe (non-sandboxed) SwiftShader software GPU renderer for WebGL content.",
+      "rationale": "The unsafe SwiftShader path has known security weaknesses; disabling it removes an attack surface used in some sandbox-escape exploit chains.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Internet Explorer Integration - Reload in IE mode",
+      "name": "Allow reload of a page in Internet Explorer mode",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Internet Explorer Mode",
+      "description": "Controls whether the 'Reload in Internet Explorer mode' option is available to end users from the page menu.",
+      "rationale": "Preventing users from manually forcing pages into the legacy, less-secure IE rendering engine reduces exposure to legacy engine vulnerabilities.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "SSL Error Override Allowed",
+      "name": "Allow users to proceed past SSL/TLS certificate warnings",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Network",
+      "description": "Controls whether users can click through the browser's certificate error interstitial to continue to a site with an invalid certificate.",
+      "rationale": "Blocking the click-through option prevents users from bypassing certificate warnings, reducing exposure to TLS interception and man-in-the-middle attacks.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Allow System Notifications",
+      "name": "Allow Microsoft Edge to use the Windows notification system",
+      "value": "Enabled",
+      "category": "Microsoft Edge - System",
+      "description": "Controls whether Edge is allowed to use the native Windows notification system to display web notifications.",
+      "rationale": "Using the native, OS-managed notification center keeps web notification behaviour consistent with Windows notification settings and auditing.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Internet Explorer Integration - Zone Identifier for MHT files",
+      "name": "Allow IE mode to bypass the Mark-of-the-Web zone check for MHT/MHTML files",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Internet Explorer Mode",
+      "description": "Controls whether MHT/MHTML files are exempted from the zone identifier (Mark-of-the-Web) security check when opened in Internet Explorer mode.",
+      "rationale": "Keeping the zone check enforced ensures that MHT/MHTML files downloaded from the internet are still treated as untrusted content, preventing a known technique for smuggling malicious active content.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Browser Sign-in",
+      "name": "Browser sign-in behavior",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Profiles",
+      "description": "Controls whether users can sign in to the browser with their work or school account.",
+      "rationale": "Enabling (rather than disabling or forcing) browser sign-in lets the organization manage profiles and sync settings via the signed-in account while still giving users a predictable sign-in flow.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Non-removable Profile Enabled",
+      "name": "Prevent removal of the enterprise/managed browser profile",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Profiles",
+      "description": "Prevents end users from deleting the managed browser profile that is provisioned for the organization.",
+      "rationale": "Preventing profile deletion ensures that policy, bookmarks, extensions and security controls tied to the managed profile cannot be removed by the end user.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Cryptography Compliance - Prefer Slow Ciphers (SSH)",
+      "name": "Preferred cipher suite compliance mode for SSH connections",
+      "value": "Enabled - CNSA",
+      "category": "Microsoft Edge - Cryptography Compliance",
+      "description": "Restricts the SSH symmetric cipher suites negotiated by Edge (e.g. for the built-in terminal/DevTools SSH usage) to the Commercial National Security Algorithm (CNSA) suite.",
+      "rationale": "Enforcing CNSA-approved ciphers aligns cryptographic negotiation with national security algorithm guidance and removes weaker legacy ciphers from the negotiation set.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Cryptography Compliance - Prefer Slow Key Exchange Algorithms (SSH)",
+      "name": "Preferred key exchange algorithm compliance mode for SSH connections",
+      "value": "Enabled - CNSA 2.0",
+      "category": "Microsoft Edge - Cryptography Compliance",
+      "description": "Restricts the SSH key exchange algorithms negotiated by Edge to the CNSA 2.0 (post-quantum ready) algorithm set.",
+      "rationale": "Enforcing CNSA 2.0 key exchange algorithms moves key agreement toward quantum-resistant algorithms and removes weaker legacy key exchange methods.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Default Search Provider Name",
+      "name": "Default search provider name",
+      "value": "Google",
+      "category": "Microsoft Edge - Search",
+      "description": "Sets the display name of the default search provider used by the address bar and search box.",
+      "rationale": "Standardizing the default search provider name keeps the search experience consistent and predictable across managed devices.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Default Search Provider Search URL",
+      "name": "Default search provider search URL",
+      "value": "https://www.google.com/search?q={searchTerms}",
+      "category": "Microsoft Edge - Search",
+      "description": "Sets the URL template used to perform a search with the default search provider.",
+      "rationale": "Centrally configuring the search URL prevents the default search engine from being silently changed by extensions or local user settings.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Default Search Provider Suggest URL",
+      "name": "Default search provider suggestion URL",
+      "value": "https://www.google.com/search?q={searchTerms}",
+      "category": "Microsoft Edge - Search",
+      "description": "Sets the URL template used to retrieve search suggestions as the user types in the address bar.",
+      "rationale": "Pinning the suggestion URL to the approved provider keeps autocomplete/suggestion traffic going to a known, organization-approved endpoint.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Default Search Provider Enabled",
+      "name": "Enable the default search provider",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Search",
+      "description": "Enables use of the organization-configured default search provider.",
+      "rationale": "This must be enabled for the configured default search provider name/URLs above to take effect.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "DNS Interception Checks Enabled",
+      "name": "Enable DNS interception checks",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Network",
+      "description": "Enables checks that detect when a network is intercepting DNS requests (e.g. redirecting all lookups to a single page), which otherwise disables certain navigation-correction features.",
+      "rationale": "Keeping interception checks enabled helps Edge correctly detect captive portals and DNS hijacking conditions rather than silently trusting intercepted responses.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Show Downloads Insecure Warnings",
+      "name": "Warn when downloading files from insecure (HTTP) sources",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Downloads",
+      "description": "Shows a warning when a user downloads a file over an insecure, non-HTTPS connection.",
+      "rationale": "Warning on insecure downloads helps users recognize when a file may have been tampered with in transit due to the lack of transport encryption.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Dynamic Code Settings",
+      "name": "Block loading of dynamic/unsigned code into the browser process",
+      "value": "Enabled - Block, no user opt-out",
+      "category": "Microsoft Edge - Application Guard / Hardening",
+      "description": "Configures the Arbitrary Code Guard (ACG) mitigation that blocks the browser process from loading dynamically generated or unsigned code, and whether users can opt out.",
+      "rationale": "Blocking dynamic code injection into the browser process closes off a common post-exploitation technique used to escalate from a compromised renderer to the privileged browser process.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Typosquatting Checker Enabled",
+      "name": "Enable typosquatting detection",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Security",
+      "description": "Warns users when they navigate to a URL that closely resembles a popular domain (a common typosquatting pattern).",
+      "rationale": "Typosquatting warnings help protect users from phishing and credential-harvesting sites that rely on domain-name look-alikes.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Edge Workspaces Enabled",
+      "name": "Enable Microsoft Edge Workspaces",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Collaboration",
+      "description": "Controls whether the Edge Workspaces feature (shared, synced tab groups) is available to users.",
+      "rationale": "Enabling Workspaces supports approved collaborative browsing scenarios under the organization's managed-profile and DLP controls.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Application Bound Encryption Enabled",
+      "name": "Enable application-bound encryption for locally stored secrets",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Data Protection",
+      "description": "Enables application-bound encryption, which ties encryption of locally stored secrets (such as cookies and saved passwords) to the Edge application itself rather than only the user's Windows profile.",
+      "rationale": "Application-bound encryption raises the bar against malware that attempts to read browser-stored secrets directly from disk outside of the browser process.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Browser Legacy Extension Points Blocking Enabled",
+      "name": "Block legacy extension points",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Hardening",
+      "description": "Blocks third-party software from using legacy Windows extension points (e.g. certain injected DLLs/hooks) to interact with the browser process.",
+      "rationale": "Blocking legacy extension points reduces the attack surface exposed to third-party code injection, including some classes of adware and malware.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Process Isolation Enabled",
+      "name": "Enable process isolation (site isolation)",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Hardening",
+      "description": "Enables Edge's site isolation security architecture, which renders cross-site content in separate OS processes.",
+      "rationale": "Process/site isolation limits the blast radius of a compromised renderer process, making it significantly harder for a malicious site to read data belonging to another site.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Renderer App Container Enabled",
+      "name": "Enable App Container sandboxing for the renderer process",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Hardening",
+      "description": "Runs the browser's renderer processes inside a Windows AppContainer sandbox.",
+      "rationale": "AppContainer sandboxing further restricts what a compromised renderer process can access on the underlying operating system.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Site Per Process",
+      "name": "Enforce strict site isolation for all sites",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Hardening",
+      "description": "Forces every site to be rendered in its own dedicated process, regardless of Edge's default site-isolation heuristics.",
+      "rationale": "Strict, non-heuristic site isolation closes gaps where Edge might otherwise co-locate sites in the same process, further strengthening defense against side-channel and cross-site data leaks.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "WebRTC Respect OS Routing Table Enabled",
+      "name": "Make WebRTC respect the OS routing table",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Network",
+      "description": "Forces WebRTC to use the network interface selected by the operating system's routing table instead of enumerating all available interfaces.",
+      "rationale": "Restricting WebRTC's interface enumeration reduces the amount of local network topology information that can be leaked to a remote site.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Network Service Sandbox Enabled",
+      "name": "Enable the network service sandbox",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Hardening",
+      "description": "Runs the browser's network service in its own sandboxed process rather than inside a less-restricted process.",
+      "rationale": "Sandboxing the network service limits what an attacker can do if that service is compromised, consistent with Edge/Chromium's process-sandboxing security model.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Enhance Security Mode",
+      "name": "Enhance your Security (Edge hardware-enforced security modes)",
+      "value": "Enabled - Balanced",
+      "category": "Microsoft Edge - Hardening",
+      "description": "Enables Microsoft Edge's built-in 'Enhance security' feature, which applies additional exploit mitigations (such as stricter memory and JIT protections) to the browser, at either Balanced or Strict level.",
+      "rationale": "The Balanced mode applies the strongest practical mitigations against memory-safety exploits for the sites users actually need, while keeping compatibility acceptable for day-to-day browsing.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Block External Extensions",
+      "name": "Block installation of extensions from outside the approved store flow",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Extensions",
+      "description": "Blocks extensions from being silently installed into Edge by other locally installed applications (so-called 'external' extension installs).",
+      "rationale": "Blocking external/silent extension installation prevents other software on the device from adding browser extensions without the user's or IT's awareness.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Extension Install Blocklist",
+      "name": "Extension install blocklist",
+      "value": "* (all extensions blocked by default)",
+      "category": "Microsoft Edge - Extensions",
+      "description": "Defines the set of extensions that are blocked from installation. A value of '*' blocks all extensions unless explicitly allow-listed via the extension install allowlist.",
+      "rationale": "Blocking all extensions by default and only allow-listing approved ones enforces a deny-by-default posture for browser extensions, which are a common vector for data exfiltration and credential theft.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Force Sync",
+      "name": "Force users to sign in and sync their browser profile",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Profiles",
+      "description": "Forces browser sync to be enabled for users who sign in with their work or school account, so that managed settings and data sync to their profile.",
+      "rationale": "Forcing sync ensures that managed bookmarks, favorites, extensions and settings are consistently applied and backed up across a user's managed devices.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "GenAI Local Foundational Model Settings",
+      "name": "Allow use of local, on-device generative AI foundational models",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Generative AI",
+      "description": "Controls whether Edge is permitted to download and run local, on-device generative AI foundation models for AI-powered features.",
+      "rationale": "Disabling local foundation models prevents AI features from running unreviewed, on-device models and processing organizational data outside of approved, centrally governed AI services.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Hide First Run Experience",
+      "name": "Hide the first-run / welcome experience",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Deployment",
+      "description": "Suppresses the first-run welcome screens, import wizard and related onboarding prompts shown the first time Edge starts.",
+      "rationale": "Hiding the first-run experience provides a clean, consistent first launch for managed devices and avoids users being prompted to import data from other browsers or sign in before policy is applied.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "HTTP Authentication - Basic Auth Over HTTP Enabled",
+      "name": "Allow HTTP Basic authentication over unencrypted HTTP",
+      "value": "Disabled",
+      "category": "Microsoft Edge - HTTP Authentication",
+      "description": "Controls whether Edge allows Basic authentication challenges to be completed over a plain, unencrypted HTTP connection.",
+      "rationale": "Disabling Basic auth over HTTP prevents credentials from being transmitted in a form that is trivially intercepted on the network.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "HTTP Authentication Schemes",
+      "name": "Supported HTTP authentication schemes",
+      "value": "ntlm,negotiate",
+      "category": "Microsoft Edge - HTTP Authentication",
+      "description": "Restricts integrated HTTP authentication to the specified schemes.",
+      "rationale": "Limiting authentication to NTLM and Negotiate (Kerberos) removes weaker or legacy authentication schemes (such as Digest or Basic) from being offered during integrated authentication.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Identity - M365 Auth Popups in Work Profile Enabled",
+      "name": "Allow Microsoft 365 authentication pop-ups in the work profile",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Identity",
+      "description": "Allows Microsoft 365 sign-in pop-up windows to be associated with and opened in the user's managed work profile.",
+      "rationale": "Keeping Microsoft 365 authentication pop-ups scoped to the work profile avoids credentials and session tokens leaking into an unmanaged personal profile.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Identity - Proactive Auth Workflow Enabled",
+      "name": "Enable proactive authentication workflow",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Identity",
+      "description": "Enables Edge's proactive sign-in workflow, which detects when a user is browsing unauthenticated to a work-related site and prompts them to sign in with their work account.",
+      "rationale": "Proactively prompting for the correct identity reduces the chance that work data is accessed from, or saved into, an unmanaged or incorrect browser profile.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Browser Idle - Idle Timeout Actions",
+      "name": "Actions to perform when the browser idle timeout is reached",
+      "value": "clear_password_signin_data",
+      "category": "Microsoft Edge - Idle Timeout",
+      "description": "Defines which cleanup actions (such as clearing saved sign-in data, browsing history or closing tabs) are performed automatically after the browser idle timeout policy triggers.",
+      "rationale": "Automatically clearing saved sign-in data after a period of inactivity reduces the window of opportunity for someone with physical access to an unattended, signed-in device. Corrected from the raw export, which captured this value as the truncated/malformed \"'clear_password_signing\" (leading apostrophe, missing trailing '_data'); confirm the companion IdleTimeout (minutes) policy is also configured before promoting this to production.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Intranet Redirect Behavior",
+      "name": "Behavior for single-word intranet hostname navigation",
+      "value": "Disable the DNS interception checks and the intranet redirect (value index 2)",
+      "category": "Microsoft Edge - Network",
+      "description": "Controls how Edge handles navigation to single-word hostnames that could either be an intranet site or a DNS-provider redirect/search result.",
+      "rationale": "Restricting automatic single-word intranet redirects reduces the risk of a user being silently redirected to an unintended or spoofed internal-looking destination. Validate the exact enum meaning for this value against current Microsoft Edge policy documentation before relying on it for compliance evidence.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Manageability - MAM with Device DLP Enabled",
+      "name": "Enable Mobile Application Management (MAM) with device-based DLP",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Data Loss Prevention",
+      "description": "Enables Edge to enforce Mobile Application Management data-loss-prevention policies in combination with device-based conditional access signals.",
+      "rationale": "Combining MAM and device DLP lets the organization enforce copy/paste, save-as and sharing restrictions for corporate data inside the browser, aligned with Intune app protection policies.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Manageability - Edge Management Enabled",
+      "name": "Enable centralized Edge management features",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Manageability",
+      "description": "Enables Edge's management/manageability features used for centralized policy enforcement and reporting.",
+      "rationale": "Keeping centralized manageability enabled ensures Edge remains fully controllable and auditable through Intune/Microsoft Endpoint Manager.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Native Messaging - User Level Hosts",
+      "name": "Allow user-level (non-admin installed) native messaging hosts",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Extensions",
+      "description": "Controls whether extensions can communicate with native messaging host applications that were registered at the user level rather than installed by an administrator.",
+      "rationale": "Disabling user-level native messaging hosts prevents an extension (or malware masquerading as one) from registering an unreviewed native application for the browser to launch and exchange data with.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Network - Happy Eyeballs v3 Enabled",
+      "name": "Enable Happy Eyeballs v3 connection racing",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Network",
+      "description": "Enables the updated Happy Eyeballs v3 algorithm, which races IPv4/IPv6 and multiple resolved addresses to improve connection reliability and speed.",
+      "rationale": "This is a reliability/performance setting; enabling the current algorithm keeps connection establishment behavior aligned with the supported, actively maintained implementation.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Password Manager - Password Monitor Allowed",
+      "name": "Allow Password Monitor (breached-password detection)",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Password Manager",
+      "description": "Allows the built-in Password Monitor feature to check saved passwords against known data-breach lists and warn the user if a match is found.",
+      "rationale": "Allowing breach monitoring helps users discover and rotate credentials that have been exposed in third-party data breaches.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Password Manager - Password Generator Enabled",
+      "name": "Enable the built-in password generator",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Password Manager",
+      "description": "Enables Edge's built-in strong password generator, offered to users when creating accounts or changing passwords on websites.",
+      "rationale": "Offering a strong password generator encourages the use of long, unique, high-entropy passwords instead of weak or reused ones.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Password Manager - Password Protection Warning Trigger",
+      "name": "Password reuse warning trigger",
+      "value": "Password reuse",
+      "category": "Microsoft Edge - Password Manager",
+      "description": "Controls when Edge warns a user that they have reused a saved or corporate password on a site, e.g. only on password reuse events.",
+      "rationale": "Warning on password reuse helps prevent a single compromised credential from providing access to multiple accounts, including corporate sign-in pages.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Password Manager - Primary Password Setting",
+      "name": "Primary (device) password requirement for the password manager",
+      "value": "Users may choose whether to set a primary password (value index 0)",
+      "category": "Microsoft Edge - Password Manager",
+      "description": "Controls whether users are required, allowed, or prevented from setting an additional primary password that must be entered before saved passwords can be viewed or used.",
+      "rationale": "This policy is configured but currently left at the permissive end of the range; validate against your organization's requirements whether a mandatory primary password should instead be enforced before this baseline is promoted to production.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Password Manager - Password Export Enabled",
+      "name": "Allow exporting saved passwords",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Password Manager",
+      "description": "Controls whether users are allowed to export their saved passwords from the Edge password manager to a file.",
+      "rationale": "Disabling password export prevents saved corporate credentials from being extracted to an unencrypted file that could be lost, synced to an unmanaged location, or exfiltrated.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Password Manager - Passkeys Enabled",
+      "name": "Enable passkey support in the password manager",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Password Manager",
+      "description": "Enables support for creating and using FIDO2/WebAuthn passkeys stored in the Edge password manager.",
+      "rationale": "Enabling passkeys supports the organization's move toward phishing-resistant, passwordless authentication.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Password Manager Enabled",
+      "name": "Enable the built-in password manager",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Password Manager",
+      "description": "Enables Edge's built-in password manager, allowing users to save and auto-fill credentials.",
+      "rationale": "Keeping the password manager enabled, combined with the other password-manager hardening settings in this baseline, gives users a safer alternative to reusing or writing down passwords.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Performance - RAM Resource Controls Enabled",
+      "name": "Enable RAM-based resource controls",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Performance",
+      "description": "Enables Edge's resource controls that manage memory usage across tabs and processes based on available system RAM.",
+      "rationale": "This is a performance/stability setting; enabling it helps keep the browser responsive on managed endpoints with constrained memory.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Printing - LPAC Sandbox Enabled",
+      "name": "Enable Low Privilege App Container (LPAC) sandbox for printing",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Printing",
+      "description": "Runs the Windows printing subsystem used by Edge inside a Low Privilege AppContainer sandbox.",
+      "rationale": "Sandboxing the printing pipeline reduces the impact of vulnerabilities in print spooler/driver code reachable from the browser.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Printing - Use System Print Dialog",
+      "name": "Use the operating system's native print dialog",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Printing",
+      "description": "Forces Edge to use the native Windows print dialog instead of its own built-in print preview UI.",
+      "rationale": "Using the OS-native print dialog keeps print behavior (including driver-level security controls such as watermarking or restricted printers) consistent with the rest of the Windows environment.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Printing - Print Preview Uses System Default Printer",
+      "name": "Default the print preview dialog to the system default printer",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Printing",
+      "description": "Makes the print preview dialog default to the Windows system default printer rather than the last used printer.",
+      "rationale": "This aligns print defaults with centrally managed printer policy rather than caching a potentially unmanaged or unintended device.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Profile - Show Profile Type in Profile Button",
+      "name": "Show the profile type (e.g. 'Work') on the profile button",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Profiles",
+      "description": "Displays a label on the profile button indicating the profile type (for example, Work or Personal).",
+      "rationale": "Clearly labelling the active profile type helps users avoid accidentally saving corporate data into a personal profile or vice versa.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Remix Availability",
+      "name": "Availability of the Edge Remix (AI image) feature",
+      "value": "Unavailable (value index 0)",
+      "category": "Microsoft Edge - Generative AI",
+      "description": "Controls whether the AI-powered Remix feature (image generation/editing) is available to users.",
+      "rationale": "Disabling the Remix feature prevents organizational or user image data from being processed by this generative-AI feature outside of approved AI tooling.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "WebRTC - Local Host IP Handling",
+      "name": "WebRTC local IP address handling",
+      "value": "Use public interface only (default_public_interface_only)",
+      "category": "Microsoft Edge - Network",
+      "description": "Restricts WebRTC to only use the default public network interface when gathering ICE candidates, rather than exposing all local interface IP addresses.",
+      "rationale": "Restricting WebRTC IP handling prevents websites from using WebRTC to enumerate local/private network addresses, a known technique for bypassing VPNs or fingerprinting internal networks.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Scareware Blocker - Send Detected Sites to SmartScreen",
+      "name": "Send scareware-blocker detections to SmartScreen",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Scareware Blocker",
+      "description": "Allows information about sites detected by the local scareware blocker (fake virus-warning/tech-support scam pages) to be sent to Microsoft Defender SmartScreen for broader protection.",
+      "rationale": "Sharing detections with SmartScreen improves the overall detection of scareware/tech-support scam pages across the Edge user base.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Internet Explorer Mode Toolbar Button Enabled",
+      "name": "Show the Internet Explorer mode toolbar button",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Internet Explorer Mode",
+      "description": "Controls whether a toolbar button is shown that lets users manually switch the current page into Internet Explorer mode.",
+      "rationale": "Hiding the manual IE-mode toolbar button prevents users from opting arbitrary sites into the legacy rendering engine outside of the centrally managed IE-mode site list.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "SmartScreen Enabled",
+      "name": "Enable Microsoft Defender SmartScreen",
+      "value": "Enabled",
+      "category": "Microsoft Edge - SmartScreen",
+      "description": "Enables Microsoft Defender SmartScreen, which checks visited sites and downloaded files against Microsoft's reputation and phishing/malware intelligence.",
+      "rationale": "SmartScreen is a core anti-phishing and anti-malware control for the browser and should remain enabled on all managed devices.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "SmartScreen - Potentially Unwanted Apps (PUA) Enabled",
+      "name": "Block potentially unwanted applications (PUA) with SmartScreen",
+      "value": "Enabled",
+      "category": "Microsoft Edge - SmartScreen",
+      "description": "Enables SmartScreen's detection and blocking of potentially unwanted applications (adware, bundleware, etc.).",
+      "rationale": "Blocking PUAs at download time reduces the volume of low-severity but disruptive unwanted software reaching endpoints.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "SmartScreen - DNS Requests Enabled",
+      "name": "Allow SmartScreen to perform DNS-based reputation requests",
+      "value": "Enabled",
+      "category": "Microsoft Edge - SmartScreen",
+      "description": "Allows SmartScreen to use DNS-based lookups as part of evaluating site reputation.",
+      "rationale": "Keeping this enabled ensures SmartScreen has the full set of signals available to evaluate site reputation accurately.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "SmartScreen - For Trusted Downloads Enabled",
+      "name": "Apply SmartScreen checks to downloads from trusted sources",
+      "value": "Enabled",
+      "category": "Microsoft Edge - SmartScreen",
+      "description": "Ensures SmartScreen still evaluates files downloaded from sources that would otherwise be treated as trusted.",
+      "rationale": "Not exempting 'trusted' sources from SmartScreen scanning closes a gap that could otherwise be abused via compromised trusted sites or supply-chain attacks.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "SmartScreen - Prevent Prompt Override",
+      "name": "Prevent users from bypassing SmartScreen site warnings",
+      "value": "Enabled",
+      "category": "Microsoft Edge - SmartScreen",
+      "description": "Removes the 'Continue (not recommended)' option from SmartScreen site warnings, so users cannot click through to a flagged site.",
+      "rationale": "Removing the click-through option ensures SmartScreen warnings for malicious or phishing sites are enforced rather than advisory only.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "SmartScreen - Prevent Prompt Override for Files",
+      "name": "Prevent users from bypassing SmartScreen download warnings",
+      "value": "Enabled",
+      "category": "Microsoft Edge - SmartScreen",
+      "description": "Removes the option to click through a SmartScreen warning and keep a file that has been flagged as malicious or unverified.",
+      "rationale": "Removing the click-through option for files ensures SmartScreen file warnings are enforced rather than advisory only, consistent with the equivalent site-warning control.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "SharedArrayBuffer Unrestricted Access Allowed",
+      "name": "Allow unrestricted access to SharedArrayBuffer",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Hardening",
+      "description": "Controls whether web pages can use SharedArrayBuffer without the cross-origin isolation requirements normally enforced by the browser.",
+      "rationale": "Keeping the cross-origin isolation requirement enforced mitigates speculative-execution side-channel attacks (such as Spectre) that rely on high-resolution timers exposed via SharedArrayBuffer.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Startup - Restore on Startup",
+      "name": "Pages to load on startup",
+      "value": "Open a specific set of pages (value index 4)",
+      "category": "Microsoft Edge - Startup",
+      "description": "Controls what Edge opens when it starts: the new tab page, the last session, or a specific, administrator-defined list of URLs.",
+      "rationale": "Opening a specific, administrator-defined set of pages at startup (configured below in 'Startup URLs') gives users a consistent, predictable starting point, such as the corporate intranet or portal.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Startup - New Tab Page Location",
+      "name": "New tab page URL",
+      "value": "https://google.nl",
+      "category": "Microsoft Edge - Startup",
+      "description": "Sets the URL that is loaded when a user opens a new tab.",
+      "rationale": "Standardizing the new-tab-page URL ensures all managed devices default to the organization-approved landing page.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Startup - Homepage is New Tab Page",
+      "name": "Use the new tab page as the homepage",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Startup",
+      "description": "Configures the home button and home shortcut to open the configured new tab page rather than a separately configured homepage URL.",
+      "rationale": "Keeping the homepage aligned with the managed new-tab-page URL avoids a separate, potentially inconsistent homepage configuration.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Startup - Show Home Button",
+      "name": "Show the Home button on the toolbar",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Startup",
+      "description": "Shows the Home button on the browser toolbar.",
+      "rationale": "Showing the Home button gives users an easy, one-click way back to the organization-approved landing page.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Startup - Restore on Startup URLs",
+      "name": "Startup URLs",
+      "value": "https://engage.cloud.microsoft/main/feed",
+      "category": "Microsoft Edge - Startup",
+      "description": "The list of URLs that are opened automatically when Edge starts, used together with the 'Open a specific set of pages' startup option.",
+      "rationale": "Opening the corporate Viva Engage feed at startup is an organizational choice to drive adoption of internal communications tooling; review and adjust this list for your own tenant before publishing.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Built-in DNS Client Enabled",
+      "name": "Use Edge's built-in (async) DNS client",
+      "value": "Disabled",
+      "category": "Microsoft Edge - Network",
+      "description": "Controls whether Edge uses its own built-in DNS resolver instead of relying on the operating system's DNS resolution.",
+      "rationale": "Disabling the built-in DNS client forces Edge to use the Windows-managed DNS resolver, keeping DNS resolution consistent with OS-level DNS security controls (such as DNS-over-HTTPS policy, split-horizon DNS, or endpoint DNS filtering).",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "WebRTC - Post-Quantum Key Agreement",
+      "name": "Enable post-quantum key agreement for WebRTC",
+      "value": "Enabled",
+      "category": "Microsoft Edge - Network",
+      "description": "Enables the use of a post-quantum-resistant key agreement algorithm when establishing WebRTC's encrypted media/data connections.",
+      "rationale": "Enabling post-quantum key agreement for WebRTC helps protect real-time communications against future decryption by quantum-capable adversaries ('harvest now, decrypt later').",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Recommended - Allow Extensions From Other Stores (default state)",
+      "name": "Recommended default: allow extensions from stores other than the Microsoft/Chrome Web Store",
+      "value": "Enabled (recommended, user-overridable)",
+      "category": "Microsoft Edge - Extensions (Recommended)",
+      "description": "Sets the recommended default state for allowing installation of extensions from third-party extension stores; unlike an enforced policy, users may still override this.",
+      "rationale": "This is configured as a recommended default rather than an enforced control; for a hardened production baseline, consider whether this should instead be enforced (Disabled) rather than left user-overridable.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Recommended - Windows Hello for HTTP Authentication",
+      "name": "Recommended default: enable Windows Hello for HTTP authentication",
+      "value": "Enabled (recommended, user-overridable)",
+      "category": "Microsoft Edge - HTTP Authentication (Recommended)",
+      "description": "Sets the recommended default for allowing Windows Hello to be used to satisfy HTTP authentication challenges.",
+      "rationale": "Recommending Windows Hello for HTTP authentication encourages the use of stronger, phishing-resistant local authentication over typed passwords where supported.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Recommended - Open External Links With Primary Work Profile",
+      "name": "Recommended default: open external links using the primary work profile",
+      "value": "Enabled (recommended, user-overridable)",
+      "category": "Microsoft Edge - Identity (Recommended)",
+      "description": "Sets the recommended default for routing links opened from other applications into the user's primary work browser profile.",
+      "rationale": "Defaulting external links to the work profile reduces the chance that corporate links are opened in, or data is captured by, an unmanaged personal profile.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Recommended - Efficiency Mode",
+      "name": "Recommended default: Efficiency Mode level",
+      "value": "Recommended (value index 3), user-overridable",
+      "category": "Microsoft Edge - Performance (Recommended)",
+      "description": "Sets the recommended default level for Edge's Efficiency Mode, which reduces CPU/battery usage for inactive tabs and background activity.",
+      "rationale": "This is a performance/battery-life recommendation rather than a security control; validate the exact Efficiency Mode level represented by this value against current Edge documentation if it needs to be reported precisely.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Recommended - Scareware Blocker Blocks Detected Sites",
+      "name": "Recommended default: scareware blocker actively blocks detected sites",
+      "value": "Enabled (recommended, user-overridable)",
+      "category": "Microsoft Edge - Scareware Blocker (Recommended)",
+      "description": "Sets the recommended default for whether the scareware blocker actively blocks (rather than only warns about) detected fake virus-warning/tech-support scam pages.",
+      "rationale": "Recommending active blocking (rather than warn-only) provides stronger default protection against scareware while still allowing users to adjust the setting if needed.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Recommended - Scareware Blocker Sends Detections to SmartScreen",
+      "name": "Recommended default: send scareware blocker detections to SmartScreen",
+      "value": "Enabled (recommended, user-overridable)",
+      "category": "Microsoft Edge - Scareware Blocker (Recommended)",
+      "description": "Sets the recommended default for sharing local scareware-blocker detections with Microsoft Defender SmartScreen.",
+      "rationale": "This mirrors the enforced 'Send Detected Sites to SmartScreen' control above, but as a user-overridable recommended default rather than a mandatory policy.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Recommended - Sleeping Tabs Enabled",
+      "name": "Recommended default: enable Sleeping Tabs",
+      "value": "Enabled (recommended, user-overridable)",
+      "category": "Microsoft Edge - Performance (Recommended)",
+      "description": "Sets the recommended default for enabling Sleeping Tabs, which frees up memory and CPU from inactive background tabs.",
+      "rationale": "This is a performance recommendation to improve responsiveness and battery life on managed devices with many open tabs.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Recommended - Sleeping Tabs Timeout",
+      "name": "Recommended default: Sleeping Tabs timeout",
+      "value": "300 seconds (5 minutes), recommended, user-overridable",
+      "category": "Microsoft Edge - Performance (Recommended)",
+      "description": "Sets the recommended default idle time before an inactive tab is put to sleep by the Sleeping Tabs feature.",
+      "rationale": "A 5-minute default balances memory/CPU savings against the inconvenience of tabs needing to reload when the user returns to them.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "WebView2 - New PDF Reader Applications List",
+      "name": "Applications using the new WebView2-based PDF reader",
+      "value": "All Applications (*)",
+      "category": "Microsoft Edge WebView2 - PDF",
+      "description": "Specifies which applications that embed the Edge WebView2 runtime should use the newer, WebView2-based PDF reader component.",
+      "rationale": "Standardizing all WebView2 host applications on the current, actively maintained PDF reader component keeps PDF rendering on the supported, patched code path.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-02",
+      "notes": "Release of Microsoft Edge for Business baseline version 1.0.0, converted from an Intune Settings Catalog export based on the Microsoft Edge SCT v151 reference template."
+    }
+  ]
+}
