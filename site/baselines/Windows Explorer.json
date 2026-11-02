@@ -2,7 +2,7 @@
   "id": "Windows Explorer",
   "name": "Windows Explorer",
   "category": "Windows 11",
-  "tier": "Core",
+  "tier": "Standard",
   "version": "1.0.0",
   "status": "Published",
   "description": "Basisset aan aanbevolen Windows 11-beveiligingsinstellingen voor Windows Explorer.",
