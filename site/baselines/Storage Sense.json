@@ -1,0 +1,79 @@
+{
+  "id": "Storage Sense",
+  "name": "Storage Sense",
+  "category": "Windows 11",
+  "tier": "Core",
+  "version": "1.0.0",
+  "status": "Published",
+  "description": "Zet Storage Sense wekelijks aan. Ruimt tijdelijke bestanden op en verwijdert items die langer dan 30 dagen in de Prullenbak staan. OneDrive-bestanden die 30 dagen niet zijn geopend, worden weer online-only. De map Downloads wordt niet automatisch opgeschoond.",
+  "updated": "2026-11-02",
+  "settings": [
+    {
+      "id": "Allow Storage Sense",
+      "name": "Allow Storage Sense",
+      "value": "Allow",
+      "category": "Storage",
+      "description": "Turns on Storage Sense for the device, so it automatically runs to free up disk space according to the configured cadence.",
+      "rationale": "Enforcing Storage Sense ensures automatic disk cleanup runs consistently across devices instead of depending on each user enabling it manually, keeping local disk usage predictable.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Allow Storage Sense Temporary Files Cleanup",
+      "name": "Allow Storage Sense Temporary Files Cleanup",
+      "value": "Allow",
+      "category": "Storage",
+      "description": "Allows Storage Sense to delete the user's temporary files that are not in use when it runs.",
+      "rationale": "Regularly clearing unused temporary files reduces unnecessary disk usage and removes transient data that has no further purpose once it is no longer in use.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Storage Sense Cloud Content Dehydration Threshold",
+      "name": "Configure Storage Sense Cloud Content Dehydration Threshold",
+      "value": "30 days",
+      "category": "Storage",
+      "description": "Sets the minimum number of days a cloud-backed file (such as a OneDrive file) can remain unopened before Storage Sense dehydrates it back to online-only.",
+      "rationale": "Dehydrating OneDrive content that has not been opened in 30 days frees up local disk space for infrequently used files while keeping them available online, without permanently deleting any data.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Storage Sense Downloads Cleanup Threshold",
+      "name": "Configure Storage Sense Downloads Cleanup Threshold",
+      "value": "0 (never)",
+      "category": "Storage",
+      "description": "Sets the minimum number of days a file in the Downloads folder can remain unopened before Storage Sense deletes it. A value of 0 means files in Downloads are never automatically deleted.",
+      "rationale": "Leaving this threshold at 0 ensures the Downloads folder is excluded from automatic cleanup, since users may rely on files there that have not been moved or opened recently.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Storage Sense Cadence",
+      "name": "Configure Storage Sense Cadence",
+      "value": "Weekly",
+      "category": "Storage",
+      "description": "Sets how often Storage Sense runs: during low free disk space, daily, weekly, or monthly.",
+      "rationale": "Running Storage Sense on a weekly cadence provides regular, predictable cleanup without waiting for the device to run low on disk space, while avoiding the overhead of a daily run.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    },
+    {
+      "id": "Configure Storage Sense Recycle Bin Cleanup Threshold",
+      "name": "Configure Storage Sense Recycle Bin Cleanup Threshold",
+      "value": "30 days",
+      "category": "Storage",
+      "description": "Sets the minimum age, in days, that a file can remain in the Recycle Bin before Storage Sense deletes it.",
+      "rationale": "Automatically purging Recycle Bin items older than 30 days frees up disk space while still giving users a reasonable window to recover accidentally deleted files.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": []
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-02",
+      "notes": "Release of Storage Sense baseline version 1.0.0, converted from an Intune Settings Catalog export."
+    }
+  ]
+}
