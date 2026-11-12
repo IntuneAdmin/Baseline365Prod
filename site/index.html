@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baseline365 — Security baselines for the modern workplace</title>
+<meta name="description" content="A practical library of configuration baselines, implementation guidance, and security recommendations for Microsoft environments.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233b82f6'/%3E%3Cstop offset='1' stop-color='%231d4ed8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='Segoe UI,Arial' font-weight='800' font-size='34' fill='white' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --border: #e4e8f0;
+    --ink: #0f172a;
+    --ink-soft: #475569;
+    --ink-faint: #64748b;
+    --brand: #2563eb;
+    --brand-strong: #1d4ed8;
+    --brand-soft: #e8f0fe;
+    --hero-from: #0f2557;
+    --hero-via: #1c4596;
+    --hero-to: #3b78d8;
+    --ok: #6ee7b7;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 8px 24px rgba(15, 23, 42, .06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b1220;
+      --surface: #111a2e;
+      --border: #1f2b45;
+      --ink: #e8eefc;
+      --ink-soft: #b4c0d8;
+      --ink-faint: #8a98b4;
+      --brand: #60a5fa;
+      --brand-strong: #93c5fd;
+      --brand-soft: #16264a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI Variable Display", "Segoe UI", Inter, system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 48px; } }
+
+  /* Header */
+  header.site {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 10;
+  }
+  header.site .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px; gap: 16px;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: #fff; font-weight: 800; font-size: 18px;
+    display: grid; place-items: center;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, .3);
+  }
+  .logo-text { font-weight: 800; font-size: 18px; letter-spacing: -.01em; }
+  .logo-text span { color: var(--brand); }
+  .btn-outline {
+    display: inline-block;
+    padding: 10px 16px; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--surface);
+    font-weight: 700; font-size: 14px; text-decoration: underline; text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+  .btn-outline:hover { border-color: var(--brand); }
+  @media (max-width: 479px) { .hide-sm { display: none; } }
+
+  /* Hero */
+  .hero {
+    position: relative; overflow: hidden;
+    margin-top: 32px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(105deg, var(--hero-from) 0%, var(--hero-via) 45%, var(--hero-to) 100%);
+    color: #fff;
+    padding: 40px 24px 44px;
+  }
+  @media (min-width: 720px) { .hero { padding: 48px 42px 52px; } }
+  .hero::before, .hero::after {
+    content: ""; position: absolute; border-radius: 50%; pointer-events: none;
+  }
+  .hero::before {
+    width: 520px; height: 520px; right: -60px; top: -170px;
+    border: 60px solid rgba(255,255,255,.06);
+  }
+  .hero::after {
+    width: 400px; height: 400px; right: 0; top: -110px;
+    background: rgba(255,255,255,.05);
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .eyebrow {
+    font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+    color: #c7d7f5; margin: 0 0 14px;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 5.2vw, 48px); line-height: 1.12; letter-spacing: -.02em;
+    margin: 0 0 14px; max-width: 620px; font-weight: 800;
+  }
+  .hero p.lead {
+    font-size: 17px; color: #dbe6fb; max-width: 600px; margin: 0 0 22px;
+  }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: #e2ebfc; margin: 0; padding: 0; list-style: none; }
+  .meta li { display: inline-flex; align-items: center; gap: 8px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px rgba(110,231,183,.2); }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 18px; border-radius: 12px; font-weight: 700; font-size: 15px; text-decoration: none;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-light { background: #fff; color: #10275a; }
+  .btn-ghost { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.25); }
+  .btn-ghost:hover { background: rgba(255,255,255,.16); }
+
+  /* Notice */
+  .notice {
+    margin: 20px 0 0;
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: 14px 18px; font-size: 14px; color: var(--ink-soft);
+  }
+  .notice strong { color: var(--ink); }
+  .pill {
+    flex: none; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    background: var(--brand-soft); color: var(--brand); border-radius: 999px; padding: 3px 10px; margin-top: 1px;
+  }
+
+  /* Sections */
+  section { margin-top: 56px; }
+  .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .section-head h2 { font-size: 24px; letter-spacing: -.01em; margin: 0; }
+  .section-head p { margin: 4px 0 0; color: var(--ink-faint); font-size: 15px; }
+
+  .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: 22px; box-shadow: var(--shadow);
+  }
+  .card h3 { margin: 14px 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+  .icon {
+    width: 40px; height: 40px; border-radius: 12px; background: var(--brand-soft); color: var(--brand);
+    display: grid; place-items: center;
+  }
+  .icon svg { width: 20px; height: 20px; }
+
+  /* Baseline cards */
+  .baseline { display: flex; flex-direction: column; gap: 12px; text-decoration: none; transition: border-color .15s ease, transform .15s ease; }
+  .baseline:hover { border-color: var(--brand); transform: translateY(-2px); }
+  .baseline-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .tag { font-size: 12px; font-weight: 700; color: var(--ink-faint); }
+  .tier { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--brand); background: var(--brand-soft); padding: 3px 9px; border-radius: 999px; }
+  .baseline h3 { margin: 0; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--ink-faint); margin-top: auto; padding-top: 6px; border-top: 1px solid var(--border); }
+  .facts b { color: var(--ink); font-weight: 700; }
+
+  /* Steps */
+  .steps { counter-reset: step; }
+  .step { position: relative; padding-left: 52px; }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 22px; top: 22px;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff;
+    font-weight: 800; font-size: 14px; display: grid; place-items: center;
+  }
+  .step.card { padding-left: 68px; }
+  .step h3 { margin-top: 0; }
+  code { font-family: "Cascadia Code", Consolas, ui-monospace, monospace; font-size: 13px; background: var(--brand-soft); color: var(--brand-strong); padding: 1px 6px; border-radius: 6px; }
+
+  footer { margin-top: 72px; border-top: 1px solid var(--border); background: var(--surface); }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 24px; padding-bottom: 24px; font-size: 14px; color: var(--ink-faint); }
+  footer a { color: var(--ink-soft); }
+  .disclaimer { font-size: 13px; color: var(--ink-faint); max-width: 760px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Baseline365 home">
+      <span class="logo-mark">B</span>
+      <span class="logo-text">Baseline<span>365</span></span>
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">Modern Workplace · Security Baselines</p>
+    <h1>Build a more secure modern workplace.</h1>
+    <p class="lead">A practical library of configuration baselines, implementation guidance, and security recommendations for Microsoft environments.</p>
+    <ul class="meta">
+      <li><span class="dot"></span>Public baseline library</li>
+      <li>↗ GitHub-backed</li>
+      <li>⌁ JSON per baseline</li>
+    </ul>
+  </div>
+
+  <div class="notice" role="status">
+    <span class="pill">Preview</span>
+    <span><strong>The full Baseline365 library is coming soon.</strong> We're preparing the online catalogue. In the meantime, every baseline is available as JSON on GitHub.</span>
+  </div>
+
+  <section aria-labelledby="what">
+    <div class="section-head">
+      <div>
+        <h2 id="what">What you'll find</h2>
+        <p>Opinionated, documented and ready to import.</p>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Security baselines</h3>
+        <p>Hardening for Windows 11 and Windows 365 Cloud PCs, aligned with CIS Level 1 and the Microsoft security baselines.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        </div>
+        <h3>Rationale per setting</h3>
+        <p>Every setting explains what it does, why it matters and which framework control it maps to.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H6a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2 2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2"/><path d="M16 3h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2 2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2"/></svg>
+        </div>
+        <h3>JSON per baseline</h3>
+        <p>One versioned JSON file per baseline, with a changelog — easy to review, diff and automate.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section aria-labelledby="how">
+    <div class="section-head">
+      <div>
+        <h2 id="how">How to use a baseline</h2>
+        <p>From library to tenant in three steps.</p>
+      </div>
+    </div>
+    <div class="grid grid-3 steps">
+      <div class="card step">
+        <h3>Review</h3>
+        <p>Read the description and rationale of each setting and check it against your own requirements.</p>
+      </div>
+      <div class="card step">
+        <h3>Download</h3>
+        <p>Grab the baseline as <code>.json</code> from GitHub — versioned, with a changelog.</p>
+      </div>
+      <div class="card step">
+        <h3>Implement</h3>
+        <p>Build it in the Intune Settings Catalog and test on a pilot group before rolling out.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="disclaimer" style="margin-top:40px">Baselines are provided as guidance. Always validate framework mappings and test settings in your own environment before deploying to production.</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Baseline365 · Security baselines for Microsoft environments</span>
+  </div>
+</footer>
+
+</body>
+</html>
