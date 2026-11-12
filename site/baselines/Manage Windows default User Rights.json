@@ -1,0 +1,331 @@
+{
+  "id": "Manage Windows default User Rights",
+  "name": "Manage Windows default User Rights",
+  "category": "Windows 11",
+  "tier": "Core",
+  "version": "1.0.0",
+  "status": "Published",
+  "description": "Legt de Windows-gebruikersrechten vast volgens CIS Level 1 en vervangt de User Rights uit de Windows 365-securitybaseline. Het gastaccount kan zich op geen enkele manier aanmelden, lokale accounts (zoals LAPS) kunnen niet via netwerk of RDP aanmelden, Backup Operators is verwijderd uit back-up, herstel en afsluiten, en ook de servicerechten zijn vastgelegd. Gevoelige systeemrechten liggen alleen bij Administrators. De Print Spooler-service (Windows 11 24H2+) is opgenomen zodat afdrukken blijft werken. Alle rechten zijn op SID ingesteld en daardoor taalonafhankelijk. Geldt voor pc's en Cloud PC's.",
+  "updated": "2026-11-12",
+  "settings": [
+    {
+      "id": "UserRights/AccessFromNetwork",
+      "name": "Access this computer from the network",
+      "value": "Administrators (*S-1-5-32-544), Remote Desktop Users (*S-1-5-32-555)",
+      "category": "User Rights",
+      "description": "Determines which users and groups can connect to the device over the network, for example via SMB or RPC.",
+      "rationale": "Limiting network access to Administrators and Remote Desktop Users reduces the attack surface for lateral movement and credential misuse.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.2 (L1) Access this computer from the network: Administrators, Remote Desktop Users" }
+      ]
+    },
+    {
+      "id": "UserRights/AdjustMemoryQuotasForProcess",
+      "name": "Adjust memory quotas for a process",
+      "value": "Administrators (*S-1-5-32-544), LOCAL SERVICE (*S-1-5-19), NETWORK SERVICE (*S-1-5-20)",
+      "category": "User Rights",
+      "description": "Determines who can change the maximum amount of memory a process can consume.",
+      "rationale": "Misuse of this right can be used for denial-of-service attacks; restricting it to Administrators and built-in service accounts prevents abuse.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.4 (L1) Adjust memory quotas for a process: Administrators, LOCAL SERVICE, NETWORK SERVICE" }
+      ]
+    },
+    {
+      "id": "UserRights/AllowLocalLogOn",
+      "name": "Allow log on locally",
+      "value": "Administrators (*S-1-5-32-544), Users (*S-1-5-32-545)",
+      "category": "User Rights",
+      "description": "Determines which users can sign in interactively at the device.",
+      "rationale": "Only legitimate users and administrators should be able to sign in locally; Guests and Backup Operators are excluded.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.5 (L1) Allow log on locally: Administrators, Users" }
+      ]
+    },
+    {
+      "id": "UserRights/BackupFilesAndDirectories",
+      "name": "Back up files and directories",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Allows bypassing file and directory permissions to back up the system.",
+      "rationale": "This right allows reading any file regardless of ACLs. Restricting it to Administrators (Backup Operators removed) prevents data exfiltration.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.7 (L1) Back up files and directories: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/CreateGlobalObjects",
+      "name": "Create global objects",
+      "value": "Administrators (*S-1-5-32-544), LOCAL SERVICE (*S-1-5-19), NETWORK SERVICE (*S-1-5-20), SERVICE (*S-1-5-6)",
+      "category": "User Rights",
+      "description": "Determines who can create global objects that are available to all sessions.",
+      "rationale": "Users with this right could create objects that affect processes in other sessions, which can lead to privilege escalation or data corruption.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.12 (L1) Create global objects: Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE" }
+      ]
+    },
+    {
+      "id": "UserRights/CreatePageFile",
+      "name": "Create a pagefile",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Determines who can create and change the size of the page file.",
+      "rationale": "Manipulating the page file can degrade system performance or expose memory contents; only Administrators need this right.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.10 (L1) Create a pagefile: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/DebugPrograms",
+      "name": "Debug programs",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Determines who can attach a debugger to any process or the kernel.",
+      "rationale": "This right gives full access to process memory and is frequently abused for credential theft (e.g. LSASS dumping); restrict to Administrators.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.15 (L1) Debug programs: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/DenyAccessFromNetwork",
+      "name": "Deny access to this computer from the network",
+      "value": "Guests (*S-1-5-32-546), Local account (*S-1-5-113)",
+      "category": "User Rights",
+      "description": "Prevents the specified accounts from connecting to the device over the network.",
+      "rationale": "Blocking Guests and local accounts (including LAPS-managed accounts) from network logon prevents lateral movement with local credentials.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.16 (L1) Deny access to this computer from the network: Guests, Local account" }
+      ]
+    },
+    {
+      "id": "UserRights/DenyLocalLogOn",
+      "name": "Deny log on locally",
+      "value": "Guests (*S-1-5-32-546)",
+      "category": "User Rights",
+      "description": "Prevents the specified accounts from signing in interactively at the device.",
+      "rationale": "The Guest account should never be able to sign in to the device.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.19 (L1) Deny log on locally: Guests" }
+      ]
+    },
+    {
+      "id": "UserRights/DenyLogOnAsBatchJob",
+      "name": "Deny log on as a batch job",
+      "value": "Guests (*S-1-5-32-546)",
+      "category": "User Rights",
+      "description": "Prevents the specified accounts from signing in through a batch-queue facility such as Task Scheduler.",
+      "rationale": "Prevents the Guest account from being used to run scheduled tasks.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.17 (L1) Deny log on as a batch job: Guests" }
+      ]
+    },
+    {
+      "id": "UserRights/DenyLogOnAsService",
+      "name": "Deny log on as a service",
+      "value": "Guests (*S-1-5-32-546)",
+      "category": "User Rights",
+      "description": "Prevents the specified accounts from registering a process as a service.",
+      "rationale": "Prevents the Guest account from being used to run services.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.18 (L1) Deny log on as a service: Guests" }
+      ]
+    },
+    {
+      "id": "UserRights/DenyRemoteDesktopServicesLogOn",
+      "name": "Deny log on through Remote Desktop Services",
+      "value": "Guests (*S-1-5-32-546), Local account (*S-1-5-113)",
+      "category": "User Rights",
+      "description": "Prevents the specified accounts from signing in through Remote Desktop.",
+      "rationale": "Blocking Guests and local accounts from RDP prevents remote access with local or LAPS credentials.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.20 (L1) Deny log on through Remote Desktop Services: Guests, Local account" }
+      ]
+    },
+    {
+      "id": "UserRights/GenerateSecurityAudits",
+      "name": "Generate security audits",
+      "value": "LOCAL SERVICE (*S-1-5-19), NETWORK SERVICE (*S-1-5-20), PrintSpoolerService (*S-1-5-99-216390572-1995538116-3857911515-2404958512-2623887229)",
+      "category": "User Rights",
+      "description": "Determines which accounts can write entries to the Security event log.",
+      "rationale": "Attackers with this right could flood or forge security log entries. The Print Spooler virtual account (Windows 11 24H2+) is added so printing keeps working.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.23 (L1) Generate security audits: LOCAL SERVICE, NETWORK SERVICE" }
+      ]
+    },
+    {
+      "id": "UserRights/ImpersonateClient",
+      "name": "Impersonate a client after authentication",
+      "value": "Administrators (*S-1-5-32-544), LOCAL SERVICE (*S-1-5-19), NETWORK SERVICE (*S-1-5-20), SERVICE (*S-1-5-6), PrintSpoolerService (*S-1-5-99-216390572-1995538116-3857911515-2404958512-2623887229)",
+      "category": "User Rights",
+      "description": "Allows programs running on behalf of a user to impersonate that client.",
+      "rationale": "Impersonation can be abused for privilege escalation (e.g. potato-style attacks). The Print Spooler virtual account (Windows 11 24H2+) is added so printing keeps working.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.24 (L1) Impersonate a client after authentication: Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE" }
+      ]
+    },
+    {
+      "id": "UserRights/IncreaseSchedulingPriority",
+      "name": "Increase scheduling priority",
+      "value": "Administrators (*S-1-5-32-544), Window Manager Group (*S-1-5-90-0)",
+      "category": "User Rights",
+      "description": "Determines which accounts can raise the base priority class of a process.",
+      "rationale": "A user with this right could raise process priority to make the system unresponsive (denial of service).",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.25 (L1) Increase scheduling priority: Administrators, Window Manager\\Window Manager Group" }
+      ]
+    },
+    {
+      "id": "UserRights/LoadUnloadDeviceDrivers",
+      "name": "Load and unload device drivers",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Determines who can dynamically load and unload device drivers.",
+      "rationale": "Loading a malicious or vulnerable driver gives kernel-level access; only Administrators should hold this right.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.26 (L1) Load and unload device drivers: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/ManageAuditingAndSecurityLog",
+      "name": "Manage auditing and security log",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Determines who can configure object access auditing and view or clear the Security log.",
+      "rationale": "Users with this right could clear the Security log to hide malicious activity.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.30 (L1) Manage auditing and security log: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/ManageVolume",
+      "name": "Perform volume maintenance tasks",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Determines who can run volume maintenance tasks such as defragmentation.",
+      "rationale": "This right allows raw access to volumes and could be used to read or delete data; restrict to Administrators.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.33 (L1) Perform volume maintenance tasks: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/ModifyFirmwareEnvironment",
+      "name": "Modify firmware environment values",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Determines who can modify firmware (UEFI/NVRAM) environment variables.",
+      "rationale": "Changing firmware values can compromise boot integrity or make the device unusable.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.32 (L1) Modify firmware environment values: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/ProfileSingleProcess",
+      "name": "Profile single process",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Determines who can use performance monitoring tools on non-system processes.",
+      "rationale": "Process profiling can reveal sensitive information about running applications.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.34 (L1) Profile single process: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/ProfileSystemPerformance",
+      "name": "Profile system performance",
+      "value": "Administrators (*S-1-5-32-544), NT SERVICE\\WdiServiceHost (*S-1-5-80-3139157870-2983391045-3678747466-658725712-1809340420)",
+      "category": "User Rights",
+      "description": "Determines who can use performance monitoring tools on system processes.",
+      "rationale": "System profiling can reveal sensitive information; only Administrators and the Diagnostic Service Host need this right.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.35 (L1) Profile system performance: Administrators, NT SERVICE\\WdiServiceHost" }
+      ]
+    },
+    {
+      "id": "UserRights/RemoteShutdown",
+      "name": "Force shutdown from a remote system",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Determines who can shut down the device from a remote location on the network.",
+      "rationale": "Unauthorized remote shutdown causes denial of service.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.22 (L1) Force shutdown from a remote system: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/ReplaceProcessLevelToken",
+      "name": "Replace a process level token",
+      "value": "LOCAL SERVICE (*S-1-5-19), NETWORK SERVICE (*S-1-5-20)",
+      "category": "User Rights",
+      "description": "Determines which accounts can change the access token of a child process.",
+      "rationale": "Token replacement can be used to start processes with elevated privileges; only built-in service accounts need this right.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.36 (L1) Replace a process level token: LOCAL SERVICE, NETWORK SERVICE" }
+      ]
+    },
+    {
+      "id": "UserRights/RestoreFilesAndDirectories",
+      "name": "Restore files and directories",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Allows bypassing file and directory permissions when restoring files.",
+      "rationale": "This right allows overwriting any file, including system binaries. Restricting it to Administrators (Backup Operators removed) prevents tampering.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.37 (L1) Restore files and directories: Administrators" }
+      ]
+    },
+    {
+      "id": "UserRights/ShutDownTheSystem",
+      "name": "Shut down the system",
+      "value": "Administrators (*S-1-5-32-544), Users (*S-1-5-32-545)",
+      "category": "User Rights",
+      "description": "Determines which locally signed-in users can shut down the device.",
+      "rationale": "Users need to be able to shut down their device; Backup Operators is removed as it does not need this right.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.38 (L1) Shut down the system: Administrators, Users" }
+      ]
+    },
+    {
+      "id": "UserRights/TakeOwnership",
+      "name": "Take ownership of files or other objects",
+      "value": "Administrators (*S-1-5-32-544)",
+      "category": "User Rights",
+      "description": "Determines who can take ownership of any securable object, such as files, registry keys and processes.",
+      "rationale": "Taking ownership bypasses all object permissions; only Administrators should hold this right.",
+      "implementation": "Intune Settings Catalog",
+      "mappings": [
+        { "framework": "CIS", "control": "2.2.39 (L1) Take ownership of files or other objects: Administrators" }
+      ]
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-12",
+      "notes": "Release of Manage Windows default User Rights baseline version 1.0.0 (26 user rights, CIS Level 1, replaces Windows 365 security baseline User Rights)"
+    }
+  ]
+}
